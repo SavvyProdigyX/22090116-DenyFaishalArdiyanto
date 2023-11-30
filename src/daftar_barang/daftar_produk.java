@@ -4,6 +4,8 @@
  */
 package daftar_barang;
 
+import login.appLogin;
+
 /**
  *
  * @author maeepp
@@ -229,6 +231,11 @@ public class daftar_produk extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        appLogin l = new appLogin();
+        l.setVisible(true);
+        this.setVisible(false);
+        
+             
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed

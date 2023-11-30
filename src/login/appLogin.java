@@ -3,20 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package login;
-
+import daftar_barang.daftar_produk;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import koneksiDatabase.koneksi;
+import registrasi.menu_registrasi;
+import transaksi.menu_transaksi;
 /**
  *
  * @author maeepp
  */
 public class appLogin extends javax.swing.JFrame {
-
+    private PreparedStatement stat;
+    private ResultSet rs;
+    koneksi k = new koneksi();
+    
     /**
      * Creates new form appLogin
      */
     public appLogin() {
         initComponents();
+        k.connect();
     }
-
+    class user {
+        int id_user, id_level ;
+        String username , password , nama_user;
+        
+//        Constructor
+        public user() {
+            this.id_user = 0;
+            this.username = txtUsername.getText();
+            this.password = txtPassword.getText();
+            this.nama_user = "";
+            this.id_level = 0;
+        }
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,6 +100,11 @@ public class appLogin extends javax.swing.JFrame {
         jLabel3.setText("PASSWORD");
 
         btnLogin.setText("LOGIN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -135,6 +164,50 @@ public class appLogin extends javax.swing.JFrame {
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        user u = new user();
+        try {
+            this.stat = k.getCon().prepareStatement("SELECT * FROM user WHERE " 
+                    +"username='"+u.username+"' and password ='"+u.password+"';");
+            this.rs = this.stat.executeQuery();
+            while (rs.next()){
+                u.id_level = rs.getInt("id_level");
+            }
+            if (u.id_level==0){
+                JOptionPane.showMessageDialog(null, "Akun Tidak Ditemukan ! Masukan Data Yang Benar ");
+            }else{
+                switch(u.id_level){
+                    case 1:
+                        menu_registrasi reg = new menu_registrasi();
+                        reg.setVisible(true);
+                        this.setVisible(false);
+                        break;
+                        
+                    case 2:
+                        menu_transaksi tra = new menu_transaksi();
+                        tra.setVisible(true);
+                        this.setVisible(false);
+                        break;
+                    case 3:
+                        menu_transaksi tran = new menu_transaksi();
+                        tran.setVisible(true);
+                        this.setVisible(false);
+                        tran.btnCetaklaporan.setEnabled(true);
+                        break;
+                    case 4:
+                        daftar_produk daf = new daftar_produk();
+                        daf.setVisible(true);
+                        this.setVisible(false);
+                        daf.btnLogout.setEnabled(true);
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments

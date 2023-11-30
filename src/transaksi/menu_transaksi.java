@@ -6,6 +6,7 @@ package transaksi;
 
 import registrasi.*;
 import daftar_barang.*;
+import login.appLogin;
 
 /**
  *
@@ -123,6 +124,7 @@ public class menu_transaksi extends javax.swing.JFrame {
         btnDelete.setText("DELETE");
 
         btnCetaklaporan.setText("CETAK LAPORAN");
+        btnCetaklaporan.setEnabled(false);
 
         btnLihatMenu.setText("LIHAT MENU");
 
@@ -247,6 +249,9 @@ public class menu_transaksi extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        appLogin l = new appLogin();
+        l.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**

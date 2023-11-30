@@ -4,6 +4,8 @@
  */
 package koneksiDatabase;
 
+import login.appLogin;
+
 /**
  *
  * @author maeepp
@@ -15,8 +17,9 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        koneksi k = new koneksi();
-        k.connect();
+        appLogin l = new appLogin();
+        l.setVisible(true);
+        
     }
     
 }
