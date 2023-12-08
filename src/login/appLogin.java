@@ -90,6 +90,7 @@ public class appLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("JetBrains Mono Medium", 0, 24)); // NOI18N
         jLabel2.setText("USERNAME ");
 
+        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -98,6 +99,8 @@ public class appLogin extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("JetBrains Mono Medium", 0, 24)); // NOI18N
         jLabel3.setText("PASSWORD");
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {

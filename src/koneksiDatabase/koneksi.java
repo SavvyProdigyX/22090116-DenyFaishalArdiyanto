@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
  * @author maeepp
  */
 public class koneksi {
+
+    static com.mysql.jdbc.Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     private final String url="jdbc:mysql://localhost/sembako";
     private final String username_xampp = "root";
     private final String password_xampp = "";

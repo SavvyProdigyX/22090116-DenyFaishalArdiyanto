@@ -102,7 +102,10 @@ public class daftar_produk extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("JetBrains Mono SemiBold", 0, 24)); // NOI18N
         jLabel2.setText("ID Produk");
 
+        txtIdProduk.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtIdProduk.setEnabled(false);
+
+        txtNamaProduk.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("JetBrains Mono SemiBold", 0, 24)); // NOI18N
         jLabel3.setText("Nama Produk");
