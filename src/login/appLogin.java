@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package login;
-import daftar_barang.daftar_produk;
+import daftar_barang.masukan_produk;
+import dashboard.dashboard_owner;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import koneksiDatabase.koneksi;
 import registrasi.menu_registrasi;
-import transaksi.menu_transaksi;
+import transaksi.menuTransaksi;
 /**
  *
  * @author maeepp
@@ -65,7 +66,7 @@ public class appLogin extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("JetBrains Mono SemiBold", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Geometr212 BkCn BT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LOGIN");
@@ -142,7 +143,7 @@ public class appLogin extends javax.swing.JFrame {
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,21 +191,16 @@ public class appLogin extends javax.swing.JFrame {
                         break;
                         
                     case 2:
-                        menu_transaksi tra = new menu_transaksi();
+                        menuTransaksi tra = new menuTransaksi();
                         tra.setVisible(true);
                         this.setVisible(false);
                         break;
+
                     case 3:
-                        menu_transaksi tran = new menu_transaksi();
-                        tran.setVisible(true);
+                        dashboard_owner dash = new dashboard_owner();
+                        dash.setVisible(true);
                         this.setVisible(false);
-                        tran.btnCetaklaporan.setEnabled(true);
-                        break;
-                    case 4:
-                        daftar_produk daf = new daftar_produk();
-                        daf.setVisible(true);
-                        this.setVisible(false);
-                        daf.btnLogout.setEnabled(true);
+                        dash.btnLogout.setEnabled(true);
                         break;
                 }
             }
