@@ -20,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import koneksiDatabase.koneksi;
 import registrasi.menu_registrasi;
 
 
@@ -34,6 +35,7 @@ public class masukan_produk extends javax.swing.JFrame {
     private static final String PASSWORD = "";
 
     private static final String INSERT_QUERY = "INSERT INTO input_produk (kd_barang, nama_produk, harga_satuan, jumlah_stok) VALUES (?, ?, ?, ?)";
+    private Object DatabaseHelper;
 
     public masukan_produk() {
         initComponents();
@@ -46,8 +48,50 @@ public class masukan_produk extends javax.swing.JFrame {
                 btnInputActionPerformed(e);
             }
         });
+        txtKdBarang.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Panggil metode untuk menampilkan informasi produk
+                displayProductInformation(txtKdBarang.getText());
+            }
+        });
 
     }
+   private void displayProductInformation(String kdBarang) {
+    try (com.mysql.jdbc.Connection connection = (com.mysql.jdbc.Connection) koneksi.getConnection()){
+        String query = "SELECT id_produk, kd_barang, nama_produk, harga_satuan, jumlah_stok FROM input_produk WHERE kd_barang = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, kdBarang); 
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int idProduk = resultSet.getInt("id_produk");
+                    String kodeBarang = resultSet.getString("kd_barang");
+                    String namaProduk = resultSet.getString("nama_produk");
+                    int hargaSatuan = resultSet.getInt("harga_satuan");
+                    int jumlahStok = resultSet.getInt("jumlah_stok");
+
+                    // Tampilkan informasi di JTextField sesuai kebutuhan
+                    txtIdProduk.setText(String.valueOf(idProduk));
+                    txtKdBarang.setText(kodeBarang);
+                    txtNamaProduk.setText(namaProduk);
+                    txtHargasatuan.setText(String.valueOf(hargaSatuan));
+                    txtJumlahStok.setText(String.valueOf(jumlahStok));
+                } else {
+                    // Barang tidak ditemukan, atur JTextField menjadi kosong
+                    txtIdProduk.setText("");
+                    txtKdBarang.setText("");
+                    txtNamaProduk.setText("");
+                    txtHargasatuan.setText("");
+                    txtJumlahStok.setText("");
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle SQLException sesuai kebutuhan Anda
+    }
+}
+
 
     public void refreshTable() {
         DefaultTableModel model = new DefaultTableModel();
@@ -381,6 +425,8 @@ public class masukan_produk extends javax.swing.JFrame {
 
     private void txtKdBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKdBarangActionPerformed
         // TODO add your handling code here:
+         displayProductInformation(txtKdBarang.getText());
+        
     }//GEN-LAST:event_txtKdBarangActionPerformed
 
     private void tblProdukMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdukMouseClicked

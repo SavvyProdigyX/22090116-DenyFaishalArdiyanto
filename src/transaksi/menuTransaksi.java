@@ -138,7 +138,7 @@ public class menuTransaksi extends javax.swing.JFrame {
 
         String lastCustomerId = getLastCustomerIdFromDatabase();
         if (lastCustomerId == null || lastCustomerId.isEmpty()) {
-            return "CUST00001"; // Gantilah dengan logika yang sesuai
+            return "CUST00001"; 
         }
 
         int lastIdNumber = Integer.parseInt(lastCustomerId.substring(4));
@@ -154,7 +154,7 @@ public class menuTransaksi extends javax.swing.JFrame {
         String lastTransactionId = getLastTransactionIdFromDatabase();
 
         if (lastTransactionId == null || lastTransactionId.isEmpty()) {
-            return "TRAN00001"; // Gantilah dengan logika yang sesuai
+            return "TRAN00001"; 
         }
 
         int lastIdNumber = Integer.parseInt(lastTransactionId.substring(4));
@@ -658,7 +658,7 @@ public class menuTransaksi extends javax.swing.JFrame {
         insertNewTransactionIdToDatabase(newTransactionId);
 
         DefaultTableModel model = (DefaultTableModel) tblTransaksi.getModel();
-        model.setRowCount(0);  // Menghapus semua baris dalam tabel
+        model.setRowCount(0); 
 
         txtIdcustomer.setText(newCustomerId);
         txtIdTransaksi.setText(newTransactionId);
